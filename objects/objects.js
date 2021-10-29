@@ -53,7 +53,7 @@ const Circle1 = new Function('radius',`
     }`
 )
 const circlea = new Circle(1);
-Circle.call({},1); // this is the same as the ono above {} referes to the object, the target of this   1 ferers to the first value
+Circle.call({},1); // this is the same as the one above {} referes to the object, the target of this   1 ferers to the first value
 Circle.apply({},[1,2,3,4]) // this is the same as the one above, but is receives arrays
 
 /* Value vs References Types
@@ -95,7 +95,14 @@ console.log(obj);
 */
 function Triangle(side){
     this.side = side;
+    this.defaultLocation = { x : 0, y : 0 }
+
+    let computeOptimumLocation = function(){ // using a variable to make it local
+
+    }
     this.draw = function(){
+      //  let x,y  these variables are part of the closure of the function, theiy preserve their state
+        computeOptimumLocation()
         console.log('draw triangle');
     }
 }
@@ -119,4 +126,5 @@ console.log(keys);
 if ('side' in triangle)
     console.log('Triangle has a radius')
 
-//ABSTRACTION
+//ABSTRACTION : hide the details and complexity and show or expose only the essentials. (Public and private)
+
