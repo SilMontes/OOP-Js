@@ -39,10 +39,10 @@ HtmlElement.prototype = Object.create(HTMLSelectElement)
 HtmlSelectElement.prototype = new HtmlElement();
 HtmlSelectElement.prototype.constructor = HTMLSelectElement;
 
-function HtmlImageElement(url){
-    this.url = url
+function HtmlImageElement(src){
+    this.src = src
     this.render = function(){
-        return `<img src="${this.url}" />`
+        return `<img src="${this.src}" />`
     }
 }
 
@@ -53,5 +53,7 @@ const elements = [
     new HtmlSelectElement([1,2,3]),
     new HtmlImageElement('http://')
 ]
-for(let ele of elements)
-    console.log(ele.render())
+for(let elem of elements){
+    console.log(elem.render())
+    
+}
