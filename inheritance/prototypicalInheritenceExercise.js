@@ -8,14 +8,23 @@ HtmlElement.prototype.focus= function(){
     console.log('Focued')
 }
 
-function HTMLSelectElement(items = []){
+
+function HtmlSelectElement(items = []){
     this.items = items
+
     this.addItem = function(item){
         this.items.push(item)
     }
+
     this.removeItem = function(item){
-        
         this.items.splice(this.items.indexOf(item),1)//searches for the item and delete one, that is, the position found
+    }
+
+    this.render = function(){
+        return  `<select>
+        ${this.items.map(item=>
+            `<option> ${item} </option>`).join('')}
+        </select>`
     }
 }
 
@@ -28,5 +37,21 @@ HtmlElement.prototype = Object.create(HTMLSelectElement)
 */
 
 HtmlSelectElement.prototype = new HtmlElement();
-HtmlElement.prototype.constructor = HTMLSelectElement;
+HtmlSelectElement.prototype.constructor = HTMLSelectElement;
 
+function HtmlImageElement(url){
+    this.url = url
+    this.render = function(){
+        return `<img src="${this.url}" />`
+    }
+}
+
+HtmlImageElement.prototype = new HtmlElement();
+HtmlImageElement.prototype.constructor = HtmlImageElement;
+
+const elements = [
+    new HtmlSelectElement([1,2,3]),
+    new HtmlImageElement('http://')
+]
+for(let ele of elements)
+    console.log(ele.render())
